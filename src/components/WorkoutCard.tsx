@@ -1,6 +1,11 @@
-import { Bolt, Dumbbell, Weight } from "lucide-react";
-import type { WorkoutPlan, WorkoutType } from "../utils/plan_db";
+import { Bolt, CircleQuestionMarkIcon, Dumbbell, Weight } from "lucide-react";
+import type {
+  ExerciseDescription,
+  WorkoutPlan,
+  WorkoutType,
+} from "../utils/plan_db";
 import React from "react";
+import Modal from "./Modal";
 
 interface WorkoutCardProps {
   trainingPlan: WorkoutPlan;
@@ -15,6 +20,10 @@ function WorkoutCard({
   dayNum,
 }: WorkoutCardProps) {
   const { warmup, workout } = trainingPlan;
+  const showExerciseDescription: ExerciseDescription = {
+    name: "hello",
+    desc: "nice to see you ",
+  };
   const icon =
     workoutIndex % 3 === 0 ? (
       <Dumbbell />
@@ -25,6 +34,10 @@ function WorkoutCard({
     );
   return (
     <div>
+      <Modal
+        showExerciseDescription={showExerciseDescription}
+        handleCloseModal={() => {}}
+      />
       <div>
         <div>
           <p>Day {dayNum}</p>
@@ -53,6 +66,9 @@ function WorkoutCard({
                 <p>
                   {warmup_index + 1}. {warmupEx.name}
                 </p>
+                <button>
+                  <CircleQuestionMarkIcon />
+                </button>
               </div>
               <p>{warmupEx.sets}</p>
               <p>{warmupEx.reps}</p>
@@ -77,6 +93,9 @@ function WorkoutCard({
                 <p>
                   {workout_index + 1}. {workoutEx.name}
                 </p>
+                <button>
+                  <CircleQuestionMarkIcon />
+                </button>
               </div>
               <p>{workoutEx.sets}</p>
               <p>{workoutEx.reps}</p>
@@ -84,6 +103,11 @@ function WorkoutCard({
             </React.Fragment>
           );
         })}
+      </div>
+
+      <div>
+        <button>Save & Exit</button>
+        <button disabled={true}>Complete</button>
       </div>
     </div>
   );

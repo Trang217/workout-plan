@@ -4,6 +4,11 @@ export interface Exercise {
   reps: number;
 }
 
+export interface ExerciseDescription {
+  name: string;
+  desc: string;
+}
+
 export type WorkoutType = "Push" | "Pull" | "Legs";
 
 export interface WorkoutPlan {

@@ -1,6 +1,6 @@
 function Hero() {
   return (
-    <div className="text-gray-800 flex flex-col items-center gap-4 max-w-4xl mx-auto bg-amber-100 p-6 rounded-lg shadow-2xl">
+    <div className="text-gray-800 flex flex-col items-center gap-4 max-w-4xl mx-auto bg-amber-50 p-6 rounded-lg shadow-2xl">
       <p className="text-2xl text-center">
         Everything you need to know about building a strength training routine
         that’ll help you meet your goals plus sample workouts to get you started

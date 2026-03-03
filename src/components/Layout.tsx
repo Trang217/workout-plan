@@ -12,7 +12,7 @@ function Layout({ children }: LayoutProps) {
     </footer>
   );
   return (
-    <div className="bg-pink-300 min-h-screen min-w-screen">
+    <div className="bg-olive-200 min-h-screen min-w-screen relative">
       <Header />
       {children}
       {footer}

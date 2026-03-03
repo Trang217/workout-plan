@@ -8,9 +8,9 @@ import WorkoutCard from "./WorkoutCard";
 
 function Grid() {
   const isLocked = false;
-  const selectedWorkout = 0;
+  const selectedWorkout = null;
   return (
-    <div>
+    <div className="grid sm:grid-cols-4 md:grid-cols-6 gap-2 p-24">
       {Object.keys(traning_plan).map((workout, workoutIndex) => {
         const type: WorkoutType =
           workoutIndex % 3 === 0
@@ -22,11 +22,11 @@ function Grid() {
         const dayNum = workoutIndex + 1;
         const icon =
           workoutIndex % 3 === 0 ? (
-            <Dumbbell />
+            <Dumbbell className="w-12 h-12" />
           ) : workoutIndex % 3 === 1 ? (
-            <Weight />
+            <Weight className="w-12 h-12" />
           ) : (
-            <Bolt />
+            <Bolt className="w-12 h-12" />
           );
 
         if (workoutIndex === selectedWorkout) {
@@ -42,22 +42,22 @@ function Grid() {
         }
         return (
           <button
-            className={`px-4 py-2 m-1 border-2 rounded-sm ${
+            className={`p-4 m-1 bg-pink-300 rounded-sm flex flex-col gap-3 justify-center items-center hover:cursor-pointer hover:scale-105 hover:shadow-2xl transition-all duration-150  ${
               isLocked ? "in-active" : "active"
             }`}
           >
             <div>
-              <p>
+              <p className="text-2xl">
                 Day{" "}
                 {workoutIndex + 1 < 10
                   ? "0" + (workoutIndex + 1)
                   : workoutIndex + 1}
               </p>
             </div>
-            {isLocked ? <Lock /> : icon}
+            {isLocked ? <Lock className="w-12 h-12" /> : icon}
 
             <div>
-              <h4>
+              <h4 className="text-2xl">
                 <b>{type}</b>
               </h4>
             </div>

@@ -1,10 +1,12 @@
-interface Exercise {
+export interface Exercise {
   name: string;
   sets: number;
   reps: number;
 }
 
-interface WorkoutPlan {
+export type WorkoutType = "Push" | "Pull" | "Legs";
+
+export interface WorkoutPlan {
   warmup: Exercise[];
   workout: Exercise[];
 }

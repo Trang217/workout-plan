@@ -1,28 +1,25 @@
 function Hero() {
   return (
-    <>
-      <h5>Complete this training program if you want to</h5>
-      <ol>
-        <li>Follow a simple program with guaranteed result</li>
-        <li>Get fit, heathy, strong and shredded</li>
-        <li>Learn more about gym, training and technique</li>
-        <li>Become a lifetime gym bro</li>
-      </ol>
-      <h3>The rules</h3>
+    <div className="text-gray-800 flex flex-col items-center gap-4 max-w-4xl mx-auto bg-amber-100 p-6 rounded-lg shadow-2xl">
+      <p className="text-2xl text-center">
+        Everything you need to know about building a strength training routine
+        that’ll help you meet your goals plus sample workouts to get you started
+      </p>
+
       <p>
         To complete this program you <strong>MUST</strong> follow 3 simple
         rules:
       </p>
 
-      <ul>
-        <div>
+      <div className="flex flex-row justify-between items-center gap-2">
+        <div className="flex flex-col items-center border-2 rounded-lg px-2 py-1 text-center">
           <p>
             <b>Rest</b>
           </p>
           <p>Ensure that you are taking rest days where neccessary</p>
         </div>
 
-        <div>
+        <div className="flex flex-col items-center border-2 rounded-lg px-2 py-1 text-center">
           <p>
             <b>Reps</b>
           </p>
@@ -34,7 +31,7 @@ function Hero() {
           </p>
         </div>
 
-        <div>
+        <div className="flex flex-col items-center border-2 rounded-lg px-2 py-1 text-center">
           <p>
             <b>
               <b>Weight*</b>
@@ -45,13 +42,12 @@ function Hero() {
             good form
           </p>
         </div>
-      </ul>
-      <small>
+      </div>
+      <small className="italic">
         *The first and second set should be at 75% and 85% of your working
         weight used for the last two sets.
       </small>
 
-      <h3> The training Plan</h3>
       <p>
         This traning plan uses a structure know as <b>Bro Split</b>, and follows
         this rotation
@@ -65,7 +61,7 @@ function Hero() {
         Complete all odf the workouts below and track your progress along the
         way
       </p>
-    </>
+    </div>
   );
 }
 

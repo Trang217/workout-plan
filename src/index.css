@@ -1,1 +1,9 @@
 @import "tailwindcss";
+
+.font-pacifico {
+  font-family: "Pacifico", sans-serif;
+}
+
+.font-bebas {
+  font-family: "Bebas Neue", sans-serif;
+}

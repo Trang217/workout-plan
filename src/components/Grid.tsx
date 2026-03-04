@@ -8,7 +8,7 @@ import WorkoutCard from "./WorkoutCard";
 
 function Grid() {
   const isLocked = false;
-  const selectedWorkout = null;
+  const selectedWorkout = 4;
   return (
     <div className="font-pacifico grid sm:grid-cols-4 md:grid-cols-6 gap-2 p-24">
       {Object.keys(traning_plan).map((workout, workoutIndex) => {

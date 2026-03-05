@@ -443,7 +443,11 @@ export const workoutProgram: WorkoutProgram = {
   },
 };
 
-export const exerciseDescriptions = {
+type ExerciseDesc = {
+  [key: string]: string;
+};
+
+export const exerciseDescriptions: ExerciseDesc = {
   "Around the worlds":
     "Hold a stick with a double shoulder-width grip. Start with the stick at your hips, then lift it over your head, keeping your arms straight, and lower it behind your back as far down as comfortable. Then slowly reverse the motion to return to the starting position.",
   "Scapula pushups":

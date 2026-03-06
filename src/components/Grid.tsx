@@ -46,7 +46,7 @@ function Grid() {
 
   return (
     <div className="font-pacifico grid sm:grid-cols-4 md:grid-cols-6 gap-2 p-24">
-      {Object.keys(traning_plan).map((workout, workoutIndex) => {
+      {Object.keys(traning_plan).map((_, workoutIndex) => {
         const isLocked =
           workoutIndex === 0
             ? false

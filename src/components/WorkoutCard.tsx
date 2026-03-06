@@ -43,7 +43,6 @@ function WorkoutCard({
   );
 
   function handleAddWeight(title: string, weight: string) {
-    console.log(weightsInfo);
     const newWeightsObj: WeightsInfor = {
       ...weightsInfo,
       [title]: weight,

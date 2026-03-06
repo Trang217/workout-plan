@@ -168,7 +168,6 @@ function WorkoutCard({
         </button>
         <button
           className="border-2 rounded-lg py-3 px-6 text-xl hover:scale-105 hover:cursor-pointer transition-all duration-150"
-          disabled={true}
           onClick={() => handleComplete(workoutIndex, { weights: weightsInfo })}
         >
           Complete

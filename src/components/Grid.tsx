@@ -11,12 +11,15 @@ import WorkoutCard from "./WorkoutCard";
 import { useState } from "react";
 
 function Grid() {
-  const isLocked = false;
   const [savedWorkout, setSavedWorkout] = useState<SaveWorkout | null>(() => {
     const data = localStorage.getItem("workoutPro");
     return data ? JSON.parse(data) : null;
   });
   const [selectedWorkout, setSelectedWorkout] = useState<number | null>(null);
+  const completedWorkoutMap = Object.keys(savedWorkout || {}).filter((el) => {
+    const entry = savedWorkout?.[Number(el)];
+    return entry?.isCompleted;
+  });
 
   function handleSave(index: number, rawdata: RawData) {
     // Save to local storage and modify the saved workout state
@@ -38,11 +41,16 @@ function Grid() {
     // Complete the workout
     const newWeightsInfo: RawData = { ...data, isCompleted: true };
     handleSave(index, newWeightsInfo);
+    setSelectedWorkout(null);
   }
 
   return (
     <div className="font-pacifico grid sm:grid-cols-4 md:grid-cols-6 gap-2 p-24">
       {Object.keys(traning_plan).map((workout, workoutIndex) => {
+        const isLocked =
+          workoutIndex === 0
+            ? false
+            : !completedWorkoutMap.includes(`${workoutIndex - 1}`);
         const type: WorkoutType =
           workoutIndex % 3 === 0
             ? "Push"
@@ -70,7 +78,7 @@ function Grid() {
               dayNum={dayNum}
               handleSave={handleSave}
               handleComplete={handleComplete}
-              savedWeights={savedWorkout?.[workoutIndex]?.weights}
+              savedWeights={savedWorkout?.[workoutIndex]?.weights ?? null}
             />
           );
         }

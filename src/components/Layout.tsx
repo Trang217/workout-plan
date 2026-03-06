@@ -8,7 +8,7 @@ interface LayoutProps {
 
 function Layout({ children }: LayoutProps) {
   return (
-    <div className="bg-olive-200 min-h-screen min-w-screen relative">
+    <div className="bg-olive-200 min-h-screen min-w-screen relative px-4">
       <Header />
       {children}
       <Footer />

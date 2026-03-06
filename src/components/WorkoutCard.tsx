@@ -2,6 +2,7 @@ import { Bolt, CircleQuestionMarkIcon, Dumbbell, Weight } from "lucide-react";
 import {
   exerciseDescriptions,
   type ExerciseDescription,
+  type WeightsInfor,
   type WorkoutPlan,
   type WorkoutType,
 } from "../utils/plan_db";
@@ -13,16 +14,38 @@ interface WorkoutCardProps {
   workoutIndex: number;
   type: WorkoutType;
   dayNum: number;
+  savedWeights: WeightsInfor | null;
+  handleSave: (index: number, data: { weights: WeightsInfor }) => void;
+  handleComplete: (index: number, data: { weights: WeightsInfor }) => void;
 }
+
 function WorkoutCard({
   trainingPlan,
   workoutIndex,
   type,
   dayNum,
+  handleSave,
+  handleComplete,
+  savedWeights,
 }: WorkoutCardProps) {
+  const initialWeightsInfo: WeightsInfor = Object.fromEntries(
+    trainingPlan.workout.map((el) => [el.name, ""]),
+  );
   const { warmup, workout } = trainingPlan;
+  const [weightsInfo, setWeightsInfo] = useState<WeightsInfor>(
+    savedWeights || initialWeightsInfo,
+  );
   const [showExerciseDescription, setShowExerciseDescription] =
     useState<ExerciseDescription | null>(null);
+
+  function handleAddWeight(title: string, weight: string) {
+    console.log(weightsInfo);
+    const newWeightsObj: WeightsInfor = {
+      ...weightsInfo,
+      [title]: weight,
+    };
+    setWeightsInfo(newWeightsObj);
+  }
 
   const icon =
     workoutIndex % 3 === 0 ? (
@@ -109,6 +132,7 @@ function WorkoutCard({
                   {workout_index + 1}. {workoutEx.name}
                 </p>
                 <button
+                  className="cursor-pointer"
                   onClick={() =>
                     setShowExerciseDescription({
                       name: workoutEx.name,
@@ -123,8 +147,12 @@ function WorkoutCard({
               <p className="text-xl ">{workoutEx.reps}</p>
               <input
                 className="col-span-2 border-2 rounded-4xl outline-0 px-4 py-1 text-center text-xl text-gray-800 placeholder:text-gray-600"
-                placeholder="14"
-                type="text"
+                placeholder="0"
+                type="number"
+                value={weightsInfo[workoutEx.name]}
+                onChange={(e) => {
+                  handleAddWeight(workoutEx.name, e.target.value);
+                }}
               />
             </React.Fragment>
           );
@@ -132,12 +160,16 @@ function WorkoutCard({
       </div>
 
       <div className="flex flex-row justify-center items-center gap-4 mt-6">
-        <button className="border-2 rounded-lg py-3 text-xl px-6 hover:scale-105 hover:cursor-pointer transition-all duration-150">
+        <button
+          onClick={() => handleSave(workoutIndex, { weights: weightsInfo })}
+          className="border-2 rounded-lg py-3 text-xl px-6 hover:scale-105 hover:cursor-pointer transition-all duration-150"
+        >
           Save & Exit
         </button>
         <button
           className="border-2 rounded-lg py-3 px-6 text-xl hover:scale-105 hover:cursor-pointer transition-all duration-150"
           disabled={true}
+          onClick={() => handleComplete(workoutIndex, { weights: weightsInfo })}
         >
           Complete
         </button>

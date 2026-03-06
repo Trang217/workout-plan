@@ -20,6 +20,19 @@ interface WorkoutProgram {
   [key: number]: WorkoutPlan;
 }
 
+export interface WeightsInfor {
+  [key: string]: string;
+}
+
+export interface RawData {
+  weights: WeightsInfor;
+  isCompleted?: boolean;
+}
+
+export interface SaveWorkout {
+  [key: number]: RawData;
+}
+
 export const workoutProgram: WorkoutProgram = {
   0: {
     // Push

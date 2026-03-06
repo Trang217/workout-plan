@@ -38,6 +38,10 @@ function WorkoutCard({
   const [showExerciseDescription, setShowExerciseDescription] =
     useState<ExerciseDescription | null>(null);
 
+  const isCompleteDisable = Object.values(weightsInfo).some(
+    (weight) => weight === "",
+  );
+
   function handleAddWeight(title: string, weight: string) {
     console.log(weightsInfo);
     const newWeightsObj: WeightsInfor = {
@@ -167,12 +171,19 @@ function WorkoutCard({
           Save & Exit
         </button>
         <button
-          className="border-2 rounded-lg py-3 px-6 text-xl hover:scale-105 hover:cursor-pointer transition-all duration-150"
+          className="border-2 rounded-lg py-3 px-6 text-xl disabled:opacity-35 disabled:cursor-not-allowed hover:scale-105 hover:cursor-pointer transition-all duration-150"
+          disabled={isCompleteDisable}
           onClick={() => handleComplete(workoutIndex, { weights: weightsInfo })}
         >
           Complete
         </button>
       </div>
+      {isCompleteDisable && (
+        <p className="text-lg mx-auto mt-6">
+          You need to finish all workout exercise to complete workout day and go
+          to next day workout!
+        </p>
+      )}
     </div>
   );
 }
